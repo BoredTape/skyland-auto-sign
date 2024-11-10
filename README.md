@@ -37,7 +37,7 @@
 2. 在青龙面板的`订阅管理`中点击`新建订阅`，将下方命令参数复制到新建订阅窗口的`名称`中后手动设置定时规则，指定类型为
    `interval` `每 1 天`后点击确定
    ```
-    ql repo https://github.com/bwmgd/skyland-auto-sign.git skyland.py "" SecuritySm.py
+    ql repo https://github.com/BoredTape/skyland-auto-sign skyland.py "" SecuritySm.py
    ```
 
 3. 安装依赖
@@ -49,4 +49,29 @@
 
 4. 默认定时`0 30 8 * * *` , 每天上午8：30运行
 
+## 通知(可选)
 
+1. 添加环境变量
+   
+   名称: `SKYLAND_NOTIFY`
+
+   值如下表
+
+   | 值        | 说明       |
+   | -------- | -------- |
+   | TG       | Telegram |
+   | BARK     | bark     |
+   | DD       | 钉钉机器人    |
+   | FSKEY    | 飞书机器人    |
+   | GOBOT    |  QQ机器人        |
+   | IGOT     |   iGot 聚合推送       |
+   | SERVERJ  |    server 酱      |
+   | PUSHDEER |    PushDeer      |
+   | PUSHPLUS |    push+ 微信推送      |
+   | QMSG     |   qmsg 酱       |
+   | QYWXAPP  |   企业微信应用       |
+   | QYWXBOT  |  企业微信机器人        |
+
+   仅测试了TG，其他推送方式若有问题请反馈
+
+2. 在青龙面板`配置管理`中填入相对应的推送API的环境变量即可
