@@ -37,7 +37,7 @@
 2. 在青龙面板的`订阅管理`中点击`新建订阅`，将下方命令参数复制到新建订阅窗口的`名称`中后手动设置定时规则，指定类型为
    `interval` `每 1 天`后点击确定
    ```
-    ql repo https://github.com/BoredTape/skyland-auto-sign skyland.py "" SecuritySm.py
+    ql repo https://github.com/BoredTape/skyland-auto-sign.git skyland.py "" SecuritySm.py
    ```
 
 3. 安装依赖
