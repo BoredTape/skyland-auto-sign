@@ -28,6 +28,7 @@ app_code = '4ca99fa6b56cc2ba'
 token_env = os.environ.get('SKLAND_TOKEN')
 # 现在想做什么？
 current_type = os.environ.get('SKYLAND_TYPE')
+skyland_notify = os.getenv('SKYLAND_NOTIFY') or ''
 
 http_local = threading.local()
 header = {
@@ -66,6 +67,46 @@ token_password_url = "https://as.hypergryph.com/user/auth/v1/token_by_phone_pass
 grant_code_url = "https://as.hypergryph.com/user/oauth2/v2/grant"
 # 使用认证代码获得cred
 cred_code_url = "https://zonai.skland.com/web/v1/user/auth/generate_cred_by_code"
+
+
+def sendMessage(title: str, content: str, type: str):
+    """
+    整合消息
+    :param title: 标题
+    :param content: 内容
+    :param type: 类型
+    :return: none
+    """
+    if (skyland_notify):
+        type = type.strip()
+        if type == 'TG':
+            notify.telegram_bot(title, content)
+        elif type == 'BARK':
+            notify.bark(title, content)
+        elif type == 'DD':
+            notify.dingding_bot(title, content)
+        elif type == 'FSKEY':
+            notify.feishu_bot(title, content)
+        elif type == 'GOBOT':
+            notify.go_cqhttp(title, content)
+        elif type == 'GOTIFY':
+            notify.gotify(title, content)
+        elif type == 'IGOT':
+            notify.iGot(title, content)
+        elif type == 'SERVERJ':
+            notify.serverJ(title, content)
+        elif type == 'PUSHDEER':
+            notify.pushdeer(title, content)
+        elif type == 'PUSHPLUS':
+            notify.pushplus_bot(title, content)
+        elif type == 'QMSG':
+            notify.qmsg_bot(title, content)
+        elif type == 'QYWXAPP':
+            notify.wecom_app(title, content)
+        elif type == 'QYWXBOT':
+            notify.wecom_bot(title, content)
+        else:
+            pass
 
 
 def config_logger():
@@ -281,4 +322,5 @@ if __name__ == '__main__':
     end_time = time.time()
     logging.info(f'complete with {(end_time - start_time) * 1000} ms')
     logging.info('===========ending============')
-    notify.wecom_app("森空岛签到", msg)
+    sendMessage('森空岛签到', msg, skyland_notify.strip())
+    # notify.wecom_app("森空岛签到", msg)
