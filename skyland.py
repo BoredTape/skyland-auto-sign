@@ -146,7 +146,10 @@ def config_logger():
 
     def post(*args, **kwargs):
         response = _post(*args, **kwargs)
-        logger.info(f'POST {args[0]} - {response.status_code} - {filter_code(response.text)}')
+        if len(args) > 0:
+            logger.info(f'POST {args[0]} - {response.status_code} - {filter_code(response.text)}')
+        else:
+            logger.info(f'POST {response.status_code} - {filter_code(response.text)}')
         return response
 
     # 替换 requests 中的方法
